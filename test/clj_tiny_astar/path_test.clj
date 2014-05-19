@@ -47,6 +47,15 @@
    0  0  0  0  0  0  0  0  0  0  0  0  0  0  1  1  1  1  1  0  0  0  0  0  0  0  0  0  0  0  0  0 ; 31
    ])
 
+(def test-grid3
+ [1 1 1 1 1 1 1
+  1 1 1 1 1 1 1
+  1 1 1 1 1 1 1
+  1 1 1 1 1 1 1
+  1 1 1 1 1 1 1
+  1 1 1 1 1 1 1
+  ])
+
 (defn can-walkf
   [grid width]
   (fn [[x y]]
@@ -63,6 +72,77 @@
           (a* (can-walkf test-grid2 32) [16 21] [16 19]))))
 
 (deftest walk3
-  (is (=[[13 16] [13 17] [14 18] [15 17] [16 17] [17 18] [18 17] [18 16] [19 16] [20 17] [21 18] [22 19] [23 20] [23 21] [23 22]]
+  (is (= [[13 16] [13 17] [14 18] [15 17] [16 17] [17 18] [18 17] [18 16] [19 16] [20 17] [21 18] [22 19] [23 20] [23 21] [23 22]]
          (a* (can-walkf test-grid2 32) [13 16] [23 22]))))
+
+(deftest walk4
+  (is (= nil
+         (a* (can-walkf test-grid3 7) [2 2] [5 5]))))
+
+(defn can-walk5
+  [pos]
+  (case pos
+    [32 19] true
+    [33 19] true
+    [33 20] true
+    [33 21] false
+    [32 21] false
+    [31 21] false
+    [31 20] true
+    [31 19] true
+    [32 18] false
+    [33 18] true
+    [32 20] false
+    [31 18] true
+    [33 17] true
+    [34 17] true
+    [34 18] true
+    [34 19] true
+    [32 17] true
+    [32 16] true
+    [33 16] true
+    [31 17] true
+    [31 16] false
+    [30 19] false
+    [30 18] false
+    [30 17] true
+    [34 16] true
+    [35 17] false
+    [35 18] true
+    [35 19] true
+    [30 16] true
+    [32 15] false
+    [33 15] false
+    [31 15] false
+    [34 20] true
+    [30 20] false
+    [36 17] false
+    [36 18] false
+    [36 19] false
+    [34 21] false
+    [30 21] false
+    [35 16] false
+    [35 20] true
+    [34 15] false
+    [29 18] false
+    [29 17] true
+    [29 16] true
+    [28 18] false
+    [28 17] true
+    [28 16] true
+    [30 15] false
+    [29 15] false
+    [36 20] false
+    [35 15] false
+    [35 21] false
+    [27 18] false
+    [27 17] false
+    [27 16] false
+    [28 15] false
+    [36 21] false
+    [27 15] false))
+
+(deftest walk5
+  (is (nil? (a* can-walk5 [32 18] [33 20]))))
+
 
