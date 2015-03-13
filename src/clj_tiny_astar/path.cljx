@@ -1,12 +1,25 @@
 (ns clj-tiny-astar.path
-  (:use [clj-tuple]
-        [clj-tiny-astar.util]
-        [clojure.data.priority-map :only [priority-map]])
+  #+clj
+  (:use [clj-tuple])
+  (:require [clj-tiny-astar.util :as util]
+            #+clj
+            [clojure.data.priority-map :refer [priority-map]]
+            #+cljs
+            [tailrecursion.priority-map :refer [priority-map]])
+  #+clj
   (:import [java.lang Math]))
+
+#+clj
+(defn abs [n]
+  (Math/abs n))
+
+#+cljs
+(defn abs [n]
+  (.abs js/Math n))
 
 (defn manhattan-dist
  [[x0 y0] [x1 y1]]
-  (+ (Math/abs ^int(- x1 x0)) (Math/abs ^int(- y1 y0))))
+  (+ (abs ^int(- x1 x0)) (abs ^int(- y1 y0))))
 
 (defn initial-open-set
   [start]
