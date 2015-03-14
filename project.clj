@@ -8,16 +8,16 @@
                  [org.clojure/data.priority-map "0.0.5"]
                  [tailrecursion/cljs-priority-map "1.1.0"]]
   :source-paths
-  ["src/clj_tiny_astar"
+  ["src"
    "target/generated-src/clj"
    "target/generated-src/cljs"]
 
 
   :cljx
-  {:builds [{:source-paths ["src/clj_tiny_astar"]
+  {:builds [{:source-paths ["src"]
              :output-path "target/generated-src/clj"
              :rules :clj}
-            {:source-paths ["src/clj_tiny_astar"]
+            {:source-paths ["src"]
              :output-path "target/generated-src/cljs"
              :rules :cljs}]}
 
