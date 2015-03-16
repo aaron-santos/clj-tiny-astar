@@ -30,12 +30,12 @@
 
 (defn a*-adj-squares
   [[w h] dist pred closed loc goal]
-  (->> (adj w h loc)
+  (->> (util/adj w h loc)
        (filter #(and (pred %)
                      (not (closed %))))
        (map (fn [p]
               (->Square p
-                        (if (diagonal? loc p) 1.4 1)
+                        (if (util/diagonal? loc p) 1.4 1)
                         (dist p goal)
                         loc)))))
 

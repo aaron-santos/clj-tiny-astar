@@ -1,6 +1,11 @@
 (ns clj-tiny-astar.util
-  (use [clj-tuple]
-       [clojure.data.priority-map :only [priority-map]])
+  #+clj
+  (use [clj-tuple])
+  (:require #+clj
+            [clojure.data.priority-map :refer [priority-map]]
+            #+cljs
+            [tailrecursion.priority-map :refer [priority-map]])
+  #+clj
   (:import [java.lang Math]))
 
 
