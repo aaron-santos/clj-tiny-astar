@@ -12,6 +12,10 @@
 (defrecord Directions
     [n ne e se s sw w nw])
 
+#+cljs
+(defn tuple [& v]
+  (apply vector v))
+
 (defn mapsnd
   [f [a b]]
   (tuple a (f b)))

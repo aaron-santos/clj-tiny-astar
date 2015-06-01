@@ -17,6 +17,10 @@
 (defn abs [n]
   (.abs js/Math n))
 
+#+cljs
+(defn tuple [& v]
+  (apply vector v))
+
 (defn manhattan-dist
  [[x0 y0] [x1 y1]]
   (+ (abs ^int(- x1 x0)) (abs ^int(- y1 y0))))
