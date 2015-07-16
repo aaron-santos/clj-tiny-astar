@@ -33,8 +33,8 @@
 (defn f [square] (+ (:g square) (:h square)))
 
 (defn a*-adj-squares
-  [[w h] dist pred closed loc goal]
-  (->> (util/adj w h loc)
+  [[min-x min-y max-x max-y] dist pred closed loc goal]
+  (->> (util/adj min-x min-y max-x max-y loc)
        (filter #(and (pred %)
                      (not (closed %))))
        (map (fn [p]

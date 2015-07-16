@@ -65,11 +65,11 @@
    (not (xor a b))))
 
 (defn in-bounds?
-  [w h [x y]]
-  (and (< -1 x w)
-       (< -1 y h)))
+  [min-x min-y max-x max-y [x y]]
+  (and (< min-x x max-x)
+       (< min-y y max-y)))
 
 (defn adj
-  [w h p]
+  [min-x min-y max-x max-y p]
   (->> (map #(vec-add p %) direction-offsets)
-       (filter #(in-bounds? w h %))))
+       (filter #(in-bounds? min-x min-y max-x max-y %))))
