@@ -1,11 +1,20 @@
 (ns clj-tiny-astar.util
-  (use [clj-tuple]
-       [clojure.data.priority-map :only [priority-map]])
+  #+clj
+  (use [clj-tuple])
+  (:require #+clj
+            [clojure.data.priority-map :refer [priority-map]]
+            #+cljs
+            [tailrecursion.priority-map :refer [priority-map]])
+  #+clj
   (:import [java.lang Math]))
 
 
 (defrecord Directions
     [n ne e se s sw w nw])
+
+#+cljs
+(defn tuple [& v]
+  (apply vector v))
 
 (defn mapsnd
   [f [a b]]
@@ -55,6 +64,12 @@
         b (zero? (- y1 y2))]
    (not (xor a b))))
 
+(defn in-bounds?
+  [min-x min-y max-x max-y [x y]]
+  (and (< min-x x max-x)
+       (< min-y y max-y)))
+
 (defn adj
-  [p]
-  (map #(vec-add p %) direction-offsets))
+  [min-x min-y max-x max-y p]
+  (->> (map #(vec-add p %) direction-offsets)
+       (filter #(in-bounds? min-x min-y max-x max-y %))))
