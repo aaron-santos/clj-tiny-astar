@@ -1,20 +1,20 @@
 (ns clj-tiny-astar.util
-  #+clj
-  (use [clj-tuple])
-  (:require #+clj
-            [clojure.data.priority-map :refer [priority-map]]
-            #+cljs
-            [tailrecursion.priority-map :refer [priority-map]])
-  #+clj
-  (:import [java.lang Math]))
+  #?(:clj
+  (:use [clj-tuple]))
+  (:require #?(:clj
+               [clojure.data.priority-map :refer [priority-map]]
+               :cljs
+               [tailrecursion.priority-map :refer [priority-map]]))
+  #?(:clj
+  (:import [java.lang Math])))
 
 
 (defrecord Directions
     [n ne e se s sw w nw])
 
-#+cljs
+#?(:cljs
 (defn tuple [& v]
-  (apply vector v))
+  (apply vector v)))
 
 (defn mapsnd
   [f [a b]]
