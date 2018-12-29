@@ -3,25 +3,14 @@
   :url "http://github.com/aaron-santos/clj-tiny-astar"
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
-  :dependencies [[org.clojure/clojure "1.6.0"]
-                 [clj-tuple "0.1.2"]
-                 [org.clojure/data.priority-map "0.0.5"]
+  :dependencies [[org.clojure/clojure "1.8.0"]
+                 [clj-tuple "0.2.2"]
+                 [org.clojure/data.priority-map "0.0.7"]
                  [tailrecursion/cljs-priority-map "1.1.0"]]
   :source-paths
   ["src"
    "target/generated-src/clj"
    "target/generated-src/cljs"]
-
-
-  :cljx
-  {:builds [{:source-paths ["src"]
-             :output-path "target/generated-src/clj"
-             :rules :clj}
-            {:source-paths ["src"]
-             :output-path "target/generated-src/cljs"
-             :rules :cljs}]}
-
-  :prep-tasks [["cljx" "once"]]
 
    :cljsbuild
   {:builds [{:id "dev"
@@ -36,5 +25,4 @@
           :plugins
           [[com.keminglabs/cljx "0.6.0"]
            [lein-cljsbuild "1.0.4"]]}})
-
 
